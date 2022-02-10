@@ -6,8 +6,7 @@ function Main() {
 
   return (
     <>
-      {/* <NavBar /> */}
-      hello
+      <NavBar />
     </>
   );
 }
