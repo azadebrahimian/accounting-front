@@ -1,4 +1,4 @@
-export function isUserInputPriceInvalid(input: string): boolean {
+export function isUserInputPriceInvalid(input) {
     const convertedAmount = Number(input);
     return (
         isNaN(convertedAmount) ||
@@ -8,7 +8,7 @@ export function isUserInputPriceInvalid(input: string): boolean {
     );
 }
 
-function doesValueHaveMoreThanTwoDecimals(str: string): boolean {
+function doesValueHaveMoreThanTwoDecimals(str) {
     if (str.includes(".")) {
         return str.split(".")[1].length > 2;
     }
