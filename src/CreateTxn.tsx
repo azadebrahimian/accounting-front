@@ -2,7 +2,7 @@ import { useState } from "react";
 // import { TextField, RadioGroup, FormControlLabel, Radio } from "@mui/material";
 // import { LocalizationProvider, DatePicker } from "@mui/lab";
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
-// import { isUserInputPriceInvalid } from "./util/UserInputUtil";
+import { isUserInputPriceInvalid } from "./util/UserInputUtil";
 
 import "./CreateTxn.scss";
 
@@ -15,12 +15,15 @@ function CreateTxn() {
 
     const amountErrorMessage =
         "Amount entered must be a non-negative, valid price.";
+    console.log(isUserInputPriceInvalid("455"));
 
     return (
         <div className="create-main">
             <h1>Create a new transaction here.</h1>
-            {/* <form className="create-form">
-                <TextField
+            <form className="create-form">
+                <label>yoooo</label>
+                <input />
+                {/* <TextField
                     variant="standard"
                     label="Amount"
                     error={amountError}
@@ -60,8 +63,8 @@ function CreateTxn() {
                         }}
                         renderInput={(params) => <TextField {...params} />}
                     />
-                </LocalizationProvider>
-            </form> */}
+                </LocalizationProvider> */}
+            </form>
         </div>
     );
 }
