@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextField, RadioGroup, FormControlLabel, Radio } from "@mui/material";
+import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
 // import { LocalizationProvider, DatePicker } from "@mui/lab";
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
@@ -34,13 +34,13 @@ function CreateTxn() {
                             setAmountError(false);
                         }
                     }}
-                /> */}
+                />
                 <TextField
                     variant="standard"
                     label="Location"
                     onChange={(e) => setLocation(e.target.value)}
-                />
-                {/* <RadioGroup row value={transactionType}>
+                /> */}
+                <RadioGroup row value={transactionType}>
                     <FormControlLabel
                         value="spent"
                         label="Spent"
@@ -52,7 +52,7 @@ function CreateTxn() {
                         control={<Radio />}
                     />
                 </RadioGroup>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="Date"
                         value={date}
