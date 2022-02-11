@@ -6,7 +6,23 @@
 .create-form {
     display: flex;
     flex-direction: column;
-    margin: auto;
-    width: 16%;
     gap: 10px;
+    align-items: stretch;
+}
+
+.create-form-individual-item {
+    display: flex;
+    gap: 10px;
+    width: 16%;
+    margin: auto;
+    align-items: baseline;
+}
+
+.amount-error-message {
+    color: red;
+}
+
+.form-submit-button {
+    margin: auto;
+    width: 5%;
 }
