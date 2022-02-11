@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { RadioGroup, FormControlLabel, Radio } from "@mui/material";
+// import { TextField, RadioGroup, FormControlLabel, Radio } from "@mui/material";
 // import { LocalizationProvider, DatePicker } from "@mui/lab";
 // import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
@@ -21,6 +21,7 @@ function CreateTxn() {
         <div className="create-main">
             <h1>Create a new transaction here.</h1>
             <form className="create-form">
+                <input type="checkbox" />
                 {/* <TextField
                     variant="standard"
                     label="Amount"
@@ -40,7 +41,7 @@ function CreateTxn() {
                     label="Location"
                     onChange={(e) => setLocation(e.target.value)}
                 /> */}
-                <RadioGroup row value={transactionType}>
+                {/* <RadioGroup row value={transactionType}>
                     <FormControlLabel
                         value="spent"
                         label="Spent"
@@ -51,7 +52,7 @@ function CreateTxn() {
                         label="Received"
                         control={<Radio />}
                     />
-                </RadioGroup>
+                </RadioGroup> */}
                 {/* <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DatePicker
                         label="Date"
