@@ -4,9 +4,11 @@ import axios from "axios";
 function History() {
     const [sample, setSample] = useState("");
 
-    axios.get("/history").then((res) => {
-        setSample(res.data.title);
-    });
+    axios
+        .get("https://nameless-escarpment-96617.herokuapp.com/history")
+        .then((res) => {
+            setSample(res.data.title);
+        });
 
     return (
         <div className="history-main">
