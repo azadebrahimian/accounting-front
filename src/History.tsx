@@ -1,12 +1,18 @@
 import { useState } from "react";
+import axios from "axios";
 
 function History() {
 
-    console.log('will this show');
+    const [eh, setEh] = useState("sad");
+
+    axios.get("/").then(res => {
+        setEh("HAPPY!!");
+    })
 
     return (
         <div className="history-main">
-            <h1>This is where you can view your transaction history.</h1>
+            <h1>This is where you can view your transaction history....</h1>
+            <p>{eh}</p>
         </div>
     );
 }
