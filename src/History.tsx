@@ -7,6 +7,7 @@ function History() {
 
     axios.get("/").then(res => {
         setEh("HAPPY!!");
+        console.log(res);
     })
 
     return (
