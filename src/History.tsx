@@ -12,13 +12,20 @@ function History() {
     });
 
     axios.get("/api/transactions/").then(res => {
-        console.log(res.data);
+        let sum = 0;
+        res.data.forEach((e) => {
+            if (e.transactionType === "spent") {
+                sum += e.amount;
+            }
+        });
+        setTot(sum);
     });
 
     return (
         <div className="history-main">
             <h1>This is where you can view your transaction history....</h1>
             <p>{eh}</p>
+            <p>In total you spent: {tot}</p>
         </div>
     );
 }
