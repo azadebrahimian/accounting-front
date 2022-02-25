@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
-import TextField from "@mui/material/TextField";
+import { TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
 
 import "./CreateTxn.scss";
 import axios from "axios";
@@ -34,6 +34,8 @@ function CreateTxn() {
           <TextField
             variant="standard"
             label="Amount"
+            error={amountError}
+            helperText={amountError && amountErrorMessage}
             onChange={(e) => {
               if (isUserInputPriceInvalid(e.target.value)) {
                 setAmountError(true);
@@ -44,22 +46,29 @@ function CreateTxn() {
             }}
           />
         </div>
-        {amountError && (
+        {/* {amountError && (
           <div className="amount-error-message">
             <p>{amountErrorMessage}</p>
           </div>
-        )}
+        )} */}
         <div className="create-form-individual-item">
-          <label>Location:</label>
+          {/* <label>Location:</label>
           <input
             type="text"
+            onChange={(e) => {
+              setLocation(e.target.value);
+            }}
+          /> */}
+          <TextField
+            variant="standard"
+            label="Location"
             onChange={(e) => {
               setLocation(e.target.value);
             }}
           />
         </div>
         <div className="create-form-individual-item">
-          <label>Spent</label>
+          {/* <label>Spent</label>
           <input
             type="radio"
             checked={transactionType === "spent"}
@@ -74,7 +83,15 @@ function CreateTxn() {
             onChange={() => {
               setTransactionType("received");
             }}
-          />
+          /> */}
+          <RadioGroup row value={transactionType}>
+            <FormControlLabel value="spent" label="Spent" control={<Radio />} />
+            <FormControlLabel
+              value="received"
+              label="Received"
+              control={<Radio />}
+            />
+          </RadioGroup>
         </div>
         <div className="create-form-individual-item">
           <label>Date:</label>
