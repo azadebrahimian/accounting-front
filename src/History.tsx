@@ -4,11 +4,16 @@ import axios from "axios";
 function History() {
 
     const [eh, setEh] = useState("sad");
+    const [tot, setTot] = useState(0);
 
     axios.get("/api/").then(res => {
         setEh("HAPPY!!");
         console.log(res.data);
-    })
+    });
+
+    axios.get("/api/transactions/").then(res => {
+        console.log(res.data);
+    });
 
     return (
         <div className="history-main">
