@@ -6,8 +6,8 @@ function History() {
     const [eh, setEh] = useState("sad");
 
     axios.get("/api/").then(res => {
-        setEh("HAPPY!!");
-        console.log(res.data);
+-       setEh("HAPPY!!");
+-       console.log(res.data);
     })
 
     return (
