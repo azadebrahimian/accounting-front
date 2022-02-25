@@ -7,8 +7,8 @@ function History() {
     const [tot, setTot] = useState(0);
 
     axios.get("/api/").then(res => {
--       setEh("HAPPY!!");
--       console.log(res.data);
+        setEh("HAPPY!!");
+        console.log(res.data);
     });
 
     axios.get("/api/transactions/").then(res => {
