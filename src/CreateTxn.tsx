@@ -1,6 +1,8 @@
 import { useState } from "react";
-import { isUserInputPriceInvalid } from "./util/UserInputUtil";
 import { TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
+import { LocalizationProvider, DatePicker } from "@mui/lab";
+import AdapterDateFns from "@mui/lab/AdapterDateFns";
+import { isUserInputPriceInvalid } from "./util/UserInputUtil";
 
 import "./CreateTxn.scss";
 import axios from "axios";
@@ -19,18 +21,6 @@ function CreateTxn() {
       <h1>Create a new transaction here.</h1>
       <form className="create-form">
         <div className="create-form-individual-item">
-          {/* <label>Amount:</label> */}
-          {/* <input
-            type="text"
-            onChange={(e) => {
-              if (isUserInputPriceInvalid(e.target.value)) {
-                setAmountError(true);
-              } else {
-                setAmount(Number(e.target.value));
-                setAmountError(false);
-              }
-            }}
-          /> */}
           <TextField
             variant="standard"
             label="Amount"
@@ -46,19 +36,7 @@ function CreateTxn() {
             }}
           />
         </div>
-        {/* {amountError && (
-          <div className="amount-error-message">
-            <p>{amountErrorMessage}</p>
-          </div>
-        )} */}
         <div className="create-form-individual-item">
-          {/* <label>Location:</label>
-          <input
-            type="text"
-            onChange={(e) => {
-              setLocation(e.target.value);
-            }}
-          /> */}
           <TextField
             variant="standard"
             label="Location"
@@ -68,22 +46,6 @@ function CreateTxn() {
           />
         </div>
         <div className="create-form-individual-item">
-          {/* <label>Spent</label>
-          <input
-            type="radio"
-            checked={transactionType === "spent"}
-            onChange={() => {
-              setTransactionType("spent");
-            }}
-          />
-          <label>Received</label>
-          <input
-            type="radio"
-            checked={transactionType === "received"}
-            onChange={() => {
-              setTransactionType("received");
-            }}
-          /> */}
           <RadioGroup
             row
             value={transactionType}
@@ -100,14 +62,24 @@ function CreateTxn() {
           </RadioGroup>
         </div>
         <div className="create-form-individual-item">
-          <label>Date:</label>
+          {/* <label>Date:</label>
           <input
             type="date"
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
             }}
-          />
+          /> */}
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <DatePicker
+              label="Date"
+              value={date}
+              onChange={(e) => {
+                setDate(e);
+              }}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
         </div>
         <button
           type="submit"
