@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
+import TextField from "@mui/material/TextField";
 
 import "./CreateTxn.scss";
 import axios from "axios";
@@ -18,9 +19,21 @@ function CreateTxn() {
       <h1>Create a new transaction here.</h1>
       <form className="create-form">
         <div className="create-form-individual-item">
-          <label>Amount:</label>
-          <input
+          {/* <label>Amount:</label> */}
+          {/* <input
             type="text"
+            onChange={(e) => {
+              if (isUserInputPriceInvalid(e.target.value)) {
+                setAmountError(true);
+              } else {
+                setAmount(Number(e.target.value));
+                setAmountError(false);
+              }
+            }}
+          /> */}
+          <TextField
+            variant="standard"
+            label="Amount"
             onChange={(e) => {
               if (isUserInputPriceInvalid(e.target.value)) {
                 setAmountError(true);
