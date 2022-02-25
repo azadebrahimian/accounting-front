@@ -84,7 +84,13 @@ function CreateTxn() {
               setTransactionType("received");
             }}
           /> */}
-          <RadioGroup row value={transactionType}>
+          <RadioGroup
+            row
+            value={transactionType}
+            onChange={(e) => {
+              setTransactionType(e.target.value);
+            }}
+          >
             <FormControlLabel value="spent" label="Spent" control={<Radio />} />
             <FormControlLabel
               value="received"
