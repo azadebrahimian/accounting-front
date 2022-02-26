@@ -47,7 +47,7 @@ function SignUp() {
             size="sm"
             disabled={!username}
             onClick={() => {
-                axios.get(`/api/checkUsernameAvailability/:${username}`).then(res => {
+                axios.get(`/api/checkUsernameAvailability/`).then(res => {
                     console.log(res.data.availability);
                 })
             }}>
