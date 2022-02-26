@@ -75,7 +75,7 @@ function CreateTxn() {
                     />
                 </div>
                 <Button
-                    type="submit"
+                    type="submit" //remove
                     className="create-form-submit-button"
                     disabled={
                         !amount ||

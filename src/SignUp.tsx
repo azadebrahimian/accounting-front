@@ -92,7 +92,6 @@ function SignUp() {
                         />
                     </div>
                     <Button
-                        // type="submit"
                         className="signup-form-submit-button"
                         disabled={
                             !firstName ||
@@ -119,6 +118,12 @@ function SignUp() {
                                     } else {
                                         navigate("/");
                                     }
+                                })
+                                .finally(() => {
+                                    setFirstName("");
+                                    setLastName("");
+                                    setUsername("");
+                                    setPassword("");
                                 });
                         }}
                     >
