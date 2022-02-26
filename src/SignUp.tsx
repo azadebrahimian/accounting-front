@@ -66,7 +66,7 @@ function SignUp() {
                             variant="standard"
                             label="Password"
                             onChange={(e) => {
-                                setUsername(e.target.value);
+                                setPassword(e.target.value);
                             }}
                         />
                         <FormControlLabel
