@@ -11,11 +11,13 @@ function SignUp() {
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
     const [invalidUsername, setInvalidUsername] = useState(false);
+    const [usernameAvailable, setUsernameAvailable] = useState(false);
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
     const navigate = useNavigate();
     const invalidUsernameMessage = "Username is already taken";
+    const availableUsernameMessage = "Username is available";
 
     return (
         <div className="signup-main">
@@ -45,8 +47,10 @@ function SignUp() {
                             variant="standard"
                             label="Username"
                             error={invalidUsername}
+                            success={usernameAvailable}
                             helperText={
-                                invalidUsername && invalidUsernameMessage
+                                (invalidUsername && invalidUsernameMessage) ||
+                                (usernameAvailable && availableUsernameMessage)
                             }
                             onChange={(e) => {
                                 setUsername(e.target.value);
@@ -67,6 +71,8 @@ function SignUp() {
                                     .then((res) => {
                                         if (!res.data.available) {
                                             setInvalidUsername(true);
+                                        } else {
+                                            setUsernameAvailable(true);
                                         }
                                     });
                             }}
