@@ -78,6 +78,7 @@ function CreateTxn() {
         <button
           type="submit"
           className="form-submit-button"
+          disabled={!amount || !location || !transactionType || !date || !amountError}
           onClick={() => {
             axios
               .post("/api/transactions/", {
