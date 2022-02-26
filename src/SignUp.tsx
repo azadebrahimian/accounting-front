@@ -57,6 +57,9 @@ function SignUp() {
                                 if (invalidUsername) {
                                     setInvalidUsername(false);
                                 }
+                                if (usernameAvailable) {
+                                    setUsernameAvailable(false);
+                                }
                             }}
                         />
                         <Button
