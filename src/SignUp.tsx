@@ -118,12 +118,6 @@ function SignUp() {
                                         navigate("/");
                                     }
                                 });
-                            // .finally(() => {
-                            //     setFirstName("");
-                            //     setLastName("");
-                            //     setUsername("");
-                            //     setPassword("");
-                            // });
                         }}
                     >
                         Submit
