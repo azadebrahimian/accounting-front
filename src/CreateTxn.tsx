@@ -75,24 +75,7 @@ function CreateTxn() {
             }}
           />
         </div>
-        <Button
-          type="submit"
-          variant="contained"
-          disabled={!amount || !transactionType || !location || !date || amountError}
-          onClick={() => {
-            axios
-              .post("/api/transactions/", {
-                amount: amount,
-                location: location,
-                transactionType: transactionType,
-                transactionDate: date,
-              })
-              .then((res) => {
-                console.log("posted!");
-              });
-          }}
-        />
-        {/* <button
+        <button
           type="submit"
           className="form-submit-button"
           onClick={() => {
@@ -108,8 +91,8 @@ function CreateTxn() {
               });
           }}
         >
-          Submit
-        </button> */}
+          SUBMIT
+        </button>
       </form>
     </div>
   );

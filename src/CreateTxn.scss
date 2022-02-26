@@ -6,7 +6,7 @@
 .create-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 5px;
     align-items: stretch;
 }
 
@@ -23,6 +23,11 @@
 }
 
 .form-submit-button {
-    margin: auto;
-    width: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: 'Roboto', sans-serif;
+    background-color: #0d6efd;
+    color: white;
+    size: 32px;
+    border-width: 1px;
 }
