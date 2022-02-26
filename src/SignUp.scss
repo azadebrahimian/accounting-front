@@ -7,19 +7,22 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
-    align-items: stretch;
+    align-items: center;
 }
 
 .signup-form-individual-item {
     display: flex;
     gap: 10px;
-    margin: auto;
-    align-items: baseline;
 }
 
 .signup-form-multi-item {
     display: flex;
     gap: 10px;
-    margin-left: 671px;
     align-items: flex-end;
+}
+
+.signup-form-box {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
 }
