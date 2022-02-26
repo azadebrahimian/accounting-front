@@ -77,6 +77,25 @@ function SignUp() {
                             }}
                         />
                     </div>
+                    <Button
+                        type="submit"
+                        className="signup-form-submit-button"
+                        // disabled={}
+                        onClick={() => {
+                            axios
+                                .post("/api/users/create/", {
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                    username: username,
+                                    password: password,
+                                })
+                                .then((res) => {
+                                    console.log("posted!");
+                                });
+                        }}
+                    >
+                        Submit
+                    </Button>
                 </div>
             </form>
         </div>
