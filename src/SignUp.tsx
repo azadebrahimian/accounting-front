@@ -92,7 +92,7 @@ function SignUp() {
                         />
                     </div>
                     <Button
-                        type="submit"
+                        // type="submit"
                         className="signup-form-submit-button"
                         disabled={
                             !firstName ||
