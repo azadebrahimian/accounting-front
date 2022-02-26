@@ -9,8 +9,11 @@ function SignUp() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [username, setUsername] = useState("");
+    const [invalidUsername, setInvalidUsername] = useState(false);
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+
+    const invalidUsernameMessage = "Username is already taken";
 
     return (
         <div className="signup-main">
@@ -39,8 +42,15 @@ function SignUp() {
                         <TextField
                             variant="standard"
                             label="Username"
+                            error={invalidUsername}
+                            helperText={
+                                invalidUsername && invalidUsernameMessage
+                            }
                             onChange={(e) => {
                                 setUsername(e.target.value);
+                                if (invalidUsername) {
+                                    setInvalidUsername(false);
+                                }
                             }}
                         />
                         <Button
@@ -53,7 +63,9 @@ function SignUp() {
                                         `/api/users/checkUsernameAvailability/${username}`
                                     )
                                     .then((res) => {
-                                        console.log(res.data.availability);
+                                        if (!res.data.available) {
+                                            setInvalidUsername(true);
+                                        }
                                     });
                             }}
                         >
@@ -83,14 +95,24 @@ function SignUp() {
                         // disabled={}
                         onClick={() => {
                             axios
-                                .post("/api/users/create/", {
-                                    firstName: firstName,
-                                    lastName: lastName,
-                                    username: username,
-                                    password: password,
-                                })
+                                .get(
+                                    `/api/users/checkUsernameAvailability/${username}`
+                                )
                                 .then((res) => {
-                                    console.log("posted!");
+                                    if (res.data.available) {
+                                        axios
+                                            .post("/api/users/create/", {
+                                                firstName: firstName,
+                                                lastName: lastName,
+                                                username: username,
+                                                password: password,
+                                            })
+                                            .then((res) => {
+                                                console.log("posted!");
+                                            });
+                                    } else {
+                                        setInvalidUsername(true);
+                                    }
                                 });
                         }}
                     >
