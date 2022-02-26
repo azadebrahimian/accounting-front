@@ -1,30 +1,25 @@
-.create-main {
+.signup-main {
     text-align: center;
     margin-top: 150px;
 }
 
-.create-form {
+.signup-form {
     display: flex;
     flex-direction: column;
     gap: 5px;
     align-items: stretch;
 }
 
-.create-form-individual-item {
+.signup-form-individual-item {
     display: flex;
     gap: 10px;
     margin: auto;
     align-items: baseline;
 }
 
-.amount-error-message {
-    color: red;
-}
-
-.form-submit-button {
-    margin: auto;
-}
-
-button:disabled {
-    opacity: 50%;
+.signup-form-multi-item {
+    display: flex;
+    gap: 10px;
+    margin-left: 671px;
+    align-items: flex-end;
 }

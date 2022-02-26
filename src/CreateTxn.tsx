@@ -1,11 +1,6 @@
 import { useState } from "react";
-import {
-  TextField,
-  RadioGroup,
-  Radio,
-  FormControlLabel,
-  Button,
-} from "@mui/material";
+import { TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
+import { Button } from "react-bootstrap";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
 
 import "./CreateTxn.scss";
@@ -75,10 +70,12 @@ function CreateTxn() {
             }}
           />
         </div>
-        <button
+        <Button
           type="submit"
           className="form-submit-button"
-          disabled={!amount || !location || !transactionType || !date || amountError}
+          disabled={
+            !amount || !location || !transactionType || !date || amountError
+          }
           onClick={() => {
             axios
               .post("/api/transactions/", {
@@ -92,8 +89,8 @@ function CreateTxn() {
               });
           }}
         >
-          SUBMIT
-        </button>
+          Submit
+        </Button>
       </form>
     </div>
   );
