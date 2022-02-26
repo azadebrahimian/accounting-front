@@ -109,7 +109,6 @@ function SignUp() {
                                     password: password,
                                 })
                                 .then((res) => {
-                                    console.log(res);
                                     if (
                                         res.data.error &&
                                         res.data.error === "invalid_username"
@@ -118,13 +117,13 @@ function SignUp() {
                                     } else {
                                         navigate("/");
                                     }
-                                })
-                                .finally(() => {
-                                    setFirstName("");
-                                    setLastName("");
-                                    setUsername("");
-                                    setPassword("");
                                 });
+                            // .finally(() => {
+                            //     setFirstName("");
+                            //     setLastName("");
+                            //     setUsername("");
+                            //     setPassword("");
+                            // });
                         }}
                     >
                         Submit
