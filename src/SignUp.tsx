@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { TextField, Checkbox, FormControlLabel } from "@mui/material";
 import { Button } from "react-bootstrap";
 import axios from "axios";
@@ -13,6 +14,7 @@ function SignUp() {
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    const navigate = useNavigate();
     const invalidUsernameMessage = "Username is already taken";
 
     return (
@@ -92,26 +94,29 @@ function SignUp() {
                     <Button
                         type="submit"
                         className="signup-form-submit-button"
-                        // disabled={}
+                        disabled={
+                            !firstName ||
+                            !lastName ||
+                            !username ||
+                            !password ||
+                            invalidUsername
+                        }
                         onClick={() => {
                             axios
-                                .get(
-                                    `/api/users/checkUsernameAvailability/${username}`
-                                )
+                                .post("/api/users/create/", {
+                                    firstName: firstName,
+                                    lastName: lastName,
+                                    username: username,
+                                    password: password,
+                                })
                                 .then((res) => {
-                                    if (res.data.available) {
-                                        axios
-                                            .post("/api/users/create/", {
-                                                firstName: firstName,
-                                                lastName: lastName,
-                                                username: username,
-                                                password: password,
-                                            })
-                                            .then((res) => {
-                                                console.log("posted!");
-                                            });
-                                    } else {
+                                    if (
+                                        res.data.error &&
+                                        res.data.error === "invalid_username"
+                                    ) {
                                         setInvalidUsername(true);
+                                    } else {
+                                        navigate("/");
                                     }
                                 });
                         }}
