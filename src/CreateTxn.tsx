@@ -1,7 +1,5 @@
 import { useState } from "react";
 import { TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
-import { LocalizationProvider, DatePicker } from "@mui/lab";
-import AdapterDateFns from "@mui/lab/AdapterDateFns";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
 
 import "./CreateTxn.scss";
@@ -62,24 +60,14 @@ function CreateTxn() {
           </RadioGroup>
         </div>
         <div className="create-form-individual-item">
-          {/* <label>Date:</label>
+          <label>Date:</label>
           <input
             type="date"
             value={date}
             onChange={(e) => {
               setDate(e.target.value);
             }}
-          /> */}
-          <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
-              label="Date"
-              value={date}
-              onChange={(e) => {
-                setDate(e);
-              }}
-              renderInput={(params) => <TextField {...params} />}
-            />
-          </LocalizationProvider>
+          />
         </div>
         <button
           type="submit"
