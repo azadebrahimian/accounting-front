@@ -110,6 +110,7 @@ function SignUp() {
                                     password: password,
                                 })
                                 .then((res) => {
+                                    console.log(res);
                                     if (
                                         res.data.error &&
                                         res.data.error === "invalid_username"
