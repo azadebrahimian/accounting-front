@@ -31,3 +31,7 @@
     size: 32px;
     border-width: 1px;
 }
+
+button:disabled {
+    opacity: 50%;
+}
