@@ -7,7 +7,7 @@ function Home() {
     const user = useContext(UserContext);
     console.log(user);
 
-    if (!user.userInfo) {
+    if (!user) {
         return (
             <div className="home-main">
                 <h1>Please login</h1>
