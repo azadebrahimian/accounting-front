@@ -32,8 +32,11 @@ function NavBar() {
             })
             .then((res) => {
                 const validToken = res.data.success;
-                console.log("is token valid");
-                console.log(validToken);
+                if (validToken) {
+                    const validTokenString = userToken.split(" ")[1];
+                    const decoded = jwt_decode(validTokenString);
+                    console.log(decoded);
+                }
             });
 
         // let validToken = false;
