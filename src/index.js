@@ -8,5 +8,6 @@ ReactDOM.render(
   <BrowserRouter>
     <Main />
   </BrowserRouter>,
+
   document.getElementById('root')
 );

@@ -20,7 +20,7 @@ function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
     const [userInfo, setUserInfo] = useState(null);
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
@@ -42,8 +42,8 @@ function NavBar() {
             });
     });
 
-    return (
-        <>
+    const Navigation = () => {
+        return (
             <div>
                 <Navbar bg="primary" variant="dark">
                     <Container>
@@ -144,7 +144,7 @@ function NavBar() {
                                     onClick={() => {
                                         localStorage.removeItem("jwtToken");
                                         setUserInfo(null);
-                                        navigate("/");
+                                        // navigate("/");
                                     }}
                                 >
                                     Sign out
@@ -154,17 +154,23 @@ function NavBar() {
                     </Container>
                 </Navbar>
             </div>
-            <div>
-                <UserContext.Provider value={{ userInfo, setUserInfo }}>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/create" element={<CreateTxn />} />
-                        <Route path="/history" element={<History />} />
-                        <Route path="/signup" element={<SignUp />} />
-                    </Routes>
-                </UserContext.Provider>
-            </div>
-        </>
+        );
+    };
+
+    return (
+        // <>
+        <div>
+            <Navigation />
+            <UserContext.Provider value={{ userInfo, setUserInfo }}>
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/create" element={<CreateTxn />} />
+                    <Route path="/history" element={<History />} />
+                    <Route path="/signup" element={<SignUp />} />
+                </Routes>
+            </UserContext.Provider>
+        </div>
+        // </>
     );
 }
 
