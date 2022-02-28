@@ -47,7 +47,7 @@ function SignUp() {
                             variant="standard"
                             label="Username"
                             error={invalidUsername}
-                            color={usernameAvailable && "success"}
+                            color={usernameAvailable ? "success" : "primary"}
                             helperText={
                                 (invalidUsername && invalidUsernameMessage) ||
                                 (usernameAvailable && availableUsernameMessage)
