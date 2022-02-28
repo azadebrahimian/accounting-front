@@ -67,7 +67,7 @@ function NavBar() {
                                         />
                                         <Button
                                             variant="primary"
-                                            type="submit"
+                                            // type="submit"
                                             className="mx-3 my-2 w-auto"
                                             onClick={() => {
                                                 axios
@@ -90,6 +90,9 @@ function NavBar() {
                                                                 jwt_decode(
                                                                     token
                                                                 )
+                                                            );
+                                                            console.log(
+                                                                userInfo
                                                             );
                                                         }
                                                     });
