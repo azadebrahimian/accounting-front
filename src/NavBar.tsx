@@ -24,7 +24,8 @@ function NavBar() {
 
     useEffect(() => {
         // async function checkIfTokenIsAuthenticated()
-        setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));
+        const storedToken = localStorage.getItem("jwtToken");
+        if (storedToken) {setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));}
     });
 
     return (
