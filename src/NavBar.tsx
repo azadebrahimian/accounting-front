@@ -108,9 +108,6 @@ function NavBar() {
                                                             setUserInfo(
                                                                 decoded
                                                             );
-                                                            console.log(
-                                                                decoded
-                                                            );
                                                         }
                                                     });
                                             }}
@@ -125,14 +122,14 @@ function NavBar() {
                 </Navbar>
             </div>
             <div>
-                {/* <UserContext.Provider value={{ userInfo, setUserInfo }}> */}
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/create" element={<CreateTxn />} />
-                    <Route path="/history" element={<History />} />
-                    <Route path="/signup" element={<SignUp />} />
-                </Routes>
-                {/* </UserContext.Provider> */}
+                <UserContext.Provider value={{ userInfo, setUserInfo }}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/create" element={<CreateTxn />} />
+                        <Route path="/history" element={<History />} />
+                        <Route path="/signup" element={<SignUp />} />
+                    </Routes>
+                </UserContext.Provider>
             </div>
         </>
     );
