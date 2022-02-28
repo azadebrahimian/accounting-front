@@ -27,7 +27,9 @@ function NavBar() {
         // async function checkIfTokenIsAuthenticated() {
         //     axios.get("/api/users/auth")
         // }
-        if (storedToken) {setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));}
+        if (storedToken) {
+            setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));
+        }
     });
 
     return (
@@ -37,15 +39,16 @@ function NavBar() {
                     <Container>
                         <Nav>
                             <Nav.Link href="/">Home &nbsp; &nbsp;</Nav.Link>
-                            {userInfo && 
-                            <>
-                            <Nav.Link href="/create">
-                                Create a Transaction &nbsp; &nbsp;
-                            </Nav.Link>
-                            <Nav.Link href="/history">
-                                View Transaction History &nbsp; &nbsp;
-                            </Nav.Link>
-                            </>}
+                            {userInfo && (
+                                <>
+                                    <Nav.Link href="/create">
+                                        Create a Transaction &nbsp; &nbsp;
+                                    </Nav.Link>
+                                    <Nav.Link href="/history">
+                                        View Transaction History &nbsp; &nbsp;
+                                    </Nav.Link>
+                                </>
+                            )}
                         </Nav>
                         <Navbar.Collapse className="justify-content-end">
                             <Button href="/signup">Sign up</Button>
@@ -118,14 +121,14 @@ function NavBar() {
                 </Navbar>
             </div>
             <div>
-                <UserContext.Provider value={{ userInfo, setUserInfo }}>
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/create" element={<CreateTxn />} />
-                        <Route path="/history" element={<History />} />
-                        <Route path="/signup" element={<SignUp />} />
-                    </Routes>
-                </UserContext.Provider>
+                {/* <UserContext.Provider value={{ userInfo, setUserInfo }}> */}
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/create" element={<CreateTxn />} />
+                    <Route path="/history" element={<History />} />
+                    <Route path="/signup" element={<SignUp />} />
+                </Routes>
+                {/* </UserContext.Provider> */}
             </div>
         </>
     );
