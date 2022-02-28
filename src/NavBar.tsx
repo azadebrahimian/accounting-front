@@ -15,6 +15,7 @@ import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
 import setAuthorizationToken from "./util/setAuthorizationToken";
+import checkIfTokenIsValid from "./util/auth";
 import { UserContext } from "./UserContext";
 
 function NavBar() {
@@ -31,6 +32,8 @@ function NavBar() {
             setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));
         }
     });
+
+    checkIfTokenIsValid();
 
     return (
         <>

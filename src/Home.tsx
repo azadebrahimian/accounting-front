@@ -4,15 +4,15 @@ import "./Home.scss";
 import { UserContext } from "./UserContext";
 
 function Home() {
-    // const user = useContext(UserContext);
+    const user = useContext(UserContext);
 
-    // if (!user.userInfo) {
-    //     return (
-    //         <div className="home-main">
-    //             <h1>Please login</h1>
-    //         </div>
-    //     );
-    // }
+    if (!user.userInfo) {
+        return (
+            <div className="home-main">
+                <h1>Please login</h1>
+            </div>
+        );
+    }
 
     return (
         <div className="home-main">
