@@ -7,7 +7,7 @@ import {
     Dropdown,
     Form,
 } from "react-bootstrap";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Home from "./Home.tsx";
@@ -15,10 +15,12 @@ import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
 import setAuthorizationToken from "./util/setAuthorizationToken";
+import { UserContext } from "./UserContext";
 
 function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
+    const [userInfo, setUserInfo] = useState(null);
 
     return (
         <>
@@ -74,10 +76,6 @@ function NavBar() {
                                                         password: passwordLogin,
                                                     })
                                                     .then((res) => {
-                                                        console.log(
-                                                            "JEGIPWJGPWIG"
-                                                        );
-                                                        console.log(res.data);
                                                         if (res.data.token) {
                                                             const { token } =
                                                                 res.data;
@@ -88,7 +86,7 @@ function NavBar() {
                                                             setAuthorizationToken(
                                                                 token
                                                             );
-                                                            console.log(
+                                                            setUserInfo(
                                                                 jwt_decode(
                                                                     token
                                                                 )
@@ -107,12 +105,14 @@ function NavBar() {
                 </Navbar>
             </div>
             <div>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/create" element={<CreateTxn />} />
-                    <Route path="/history" element={<History />} />
-                    <Route path="/signup" element={<SignUp />} />
-                </Routes>
+                <UserContext.Provider value={userInfo}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/create" element={<CreateTxn />} />
+                        <Route path="/history" element={<History />} />
+                        <Route path="/signup" element={<SignUp />} />
+                    </Routes>
+                </UserContext.Provider>
             </div>
         </>
     );
