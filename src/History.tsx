@@ -5,10 +5,11 @@ import { UserContext } from "./UserContext";
 function History() {
     const [tot, setTot] = useState(0);
     const user = useContext(UserContext);
-    const tokenString = "Bearer " + user.jwtToken;
 
     axios
-        .get("/api/transactions/", { headers: { Authorization: tokenString } })
+        .get("/api/transactions/", {
+            headers: { "x-access-token": user.jwtToken },
+        })
         .then((res) => {
             let sum = 0;
             res.data.forEach((e) => {

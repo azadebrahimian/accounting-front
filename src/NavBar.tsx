@@ -7,14 +7,13 @@ import {
     Dropdown,
     Form,
 } from "react-bootstrap";
-import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Home from "./Home.tsx";
 import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
-import setAuthorizationToken from "./util/setAuthorizationToken";
 import checkIfTokenIsValid from "./util/auth";
 import { UserContext } from "./UserContext";
 
@@ -24,13 +23,21 @@ function NavBar() {
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
-        const storedToken = localStorage.getItem("jwtToken");
-        // async function checkIfTokenIsAuthenticated() {
-        //     axios.get("/api/users/auth")
-        // }
-        if (storedToken) {
-            setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));
+        let validToken = false;
+        async function validate() {
+            await checkIfTokenIsValid().then((res) => {
+                validToken = res.data.success;
+                if (validToken) {
+                    const { token } = res.data;
+                    const decoded = jwt_decode(token);
+                    setUserInfo(decoded);
+                } else {
+                    setUserInfo(null);
+                }
+            });
         }
+
+        validate();
     });
 
     return (
@@ -52,71 +59,91 @@ function NavBar() {
                             )}
                         </Nav>
                         <Navbar.Collapse className="justify-content-end">
-                            <Button href="/signup">Sign up</Button>
-                            <Dropdown autoClose="outside" align="end">
-                                <Dropdown.Toggle id="dropdown-sign-in">
-                                    Sign in
-                                </Dropdown.Toggle>
+                            {!userInfo && (
+                                <>
+                                    <Button href="/signup">Sign up</Button>
+                                    <Dropdown autoClose="outside" align="end">
+                                        <Dropdown.Toggle id="dropdown-sign-in">
+                                            Sign in
+                                        </Dropdown.Toggle>
 
-                                <Dropdown.Menu>
-                                    <Form>
-                                        <Form.Control
-                                            autoFocus
-                                            className="mx-3 my-2 w-auto"
-                                            placeholder="Username"
-                                            onChange={(e) => {
-                                                setUsernameLogin(
-                                                    e.target.value
-                                                );
-                                            }}
-                                        />
-                                        <Form.Control
-                                            className="mx-3 my-2 w-auto"
-                                            type="password"
-                                            placeholder="Password"
-                                            onChange={(e) => {
-                                                setPasswordLogin(
-                                                    e.target.value
-                                                );
-                                            }}
-                                        />
-                                        <Button
-                                            variant="primary"
-                                            // type="submit"
-                                            className="mx-3 my-2 w-auto"
-                                            onClick={() => {
-                                                axios
-                                                    .post("/api/users/login", {
-                                                        username: usernameLogin,
-                                                        password: passwordLogin,
-                                                    })
-                                                    .then((res) => {
-                                                        if (res.data.token) {
-                                                            const { token } =
-                                                                res.data;
-                                                            localStorage.setItem(
-                                                                "jwtToken",
-                                                                token
-                                                            );
-                                                            setAuthorizationToken(
-                                                                token
-                                                            );
-                                                            const decoded =
-                                                                jwt_decode(
-                                                                    token
-                                                                );
-                                                            setUserInfo(
-                                                                decoded
-                                                            );
-                                                        }
-                                                    });
-                                            }}
-                                        >
-                                            Log in!
-                                        </Button>
-                                    </Form>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                        <Dropdown.Menu>
+                                            <Form>
+                                                <Form.Control
+                                                    autoFocus
+                                                    className="mx-3 my-2 w-auto"
+                                                    placeholder="Username"
+                                                    onChange={(e) => {
+                                                        setUsernameLogin(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                />
+                                                <Form.Control
+                                                    className="mx-3 my-2 w-auto"
+                                                    type="password"
+                                                    placeholder="Password"
+                                                    onChange={(e) => {
+                                                        setPasswordLogin(
+                                                            e.target.value
+                                                        );
+                                                    }}
+                                                />
+                                                <Button
+                                                    variant="primary"
+                                                    // type="submit"
+                                                    className="mx-3 my-2 w-auto"
+                                                    onClick={() => {
+                                                        axios
+                                                            .post(
+                                                                "/api/users/login",
+                                                                {
+                                                                    username:
+                                                                        usernameLogin,
+                                                                    password:
+                                                                        passwordLogin,
+                                                                }
+                                                            )
+                                                            .then((res) => {
+                                                                if (
+                                                                    res.data
+                                                                        .token
+                                                                ) {
+                                                                    const {
+                                                                        token,
+                                                                    } =
+                                                                        res.data;
+                                                                    const decoded =
+                                                                        jwt_decode(
+                                                                            token
+                                                                        );
+                                                                    localStorage.setItem(
+                                                                        "jwtToken",
+                                                                        token
+                                                                    );
+                                                                    setUserInfo(
+                                                                        decoded
+                                                                    );
+                                                                }
+                                                            });
+                                                    }}
+                                                >
+                                                    Log in!
+                                                </Button>
+                                            </Form>
+                                        </Dropdown.Menu>
+                                    </Dropdown>
+                                </>
+                            )}
+                            {userInfo && (
+                                <Button
+                                    onClick={() => {
+                                        localStorage.removeItem("jwtToken");
+                                    }}
+                                >
+                                    Sign out
+                                </Button>
+                            )}
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

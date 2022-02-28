@@ -1,11 +1,10 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import "./Home.scss";
 import { UserContext } from "./UserContext";
 
 function Home() {
     const { userInfo, setUserInfo } = useContext(UserContext);
-    console.log(userInfo);
 
     if (!userInfo) {
         return (

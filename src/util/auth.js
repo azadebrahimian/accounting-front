@@ -1,11 +1,7 @@
-import { useContext } from "react";
 import axios from "axios";
-// import { UserContext } from "./UserContext";
 
-export default function checkIfTokenIsValid(token) {
-    // const user = useContext(UserContext);
-    console.log(user);
-    // const userToken = user.userInfo ? user.userInfo.
+export default function checkIfTokenIsValid() {
+    const userToken = localStorage.getItem("jwtToken") || "";
 
-    // axios.get("/api/users/auth", { headers: { Authorization: "Bearer " + } })
+    return axios.get("/api/users/auth", { headers: { "x-access-token": userToken } })
 }
