@@ -6,7 +6,7 @@ import { UserContext } from "./UserContext";
 function Home() {
     const user = useContext(UserContext);
 
-    if (!user) {
+    if (!user.userInfo) {
         return (
             <div className="home-main">
                 <h1>Please login</h1>
