@@ -34,7 +34,7 @@ function NavBar() {
                         </Nav>
                         <Navbar.Collapse className="justify-content-end">
                             <Button href="/signup">Sign up</Button>
-                            <Dropdown autoClose="outside">
+                            <Dropdown autoClose="outside" align="end">
                                 <Dropdown.Toggle id="dropdown-sign-in">
                                     Sign in
                                 </Dropdown.Toggle>
