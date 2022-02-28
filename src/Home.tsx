@@ -5,8 +5,6 @@ import { UserContext } from "./UserContext";
 
 function Home() {
     const user = useContext(UserContext);
-    console.log("in home");
-    console.log(user);
 
     if (!user.userInfo) {
         return (
@@ -18,7 +16,7 @@ function Home() {
 
     return (
         <div className="home-main">
-            <h1>Welcome back {user.username}.</h1>
+            <h1>Welcome back {user.userInfo.username}.</h1>
             <h3>Today you spent: $69</h3>
             <h3>So far this week you spent: $420</h3>
             <div className="remaining-week-section">
