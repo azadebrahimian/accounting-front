@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TextField, Checkbox, FormControlLabel } from "@mui/material";
 import { Button } from "react-bootstrap";
 import axios from "axios";
 
 import "./SignUp.scss";
+
+import setAuthorizationToken from "./util/setAuthorizationToken";
+import jwt_decode from "jwt-decode";
+import { UserContext } from "./UserContext";
 
 function SignUp() {
     const [firstName, setFirstName] = useState("");
@@ -18,7 +22,7 @@ function SignUp() {
     const navigate = useNavigate();
     const invalidUsernameMessage = "Username is already taken";
     const availableUsernameMessage = "Username is available";
-
+    const { userInfo, setUserInfo } = useContext(UserContext);
     return (
         <div className="signup-main">
             <h1>Sign up today!</h1>
@@ -133,6 +137,29 @@ function SignUp() {
                     </Button>
                 </div>
             </form>
+            <Button
+                variant="primary"
+                // type="submit"
+                className="mx-3 my-2 w-auto"
+                onClick={() => {
+                    axios
+                        .post("/api/users/login", {
+                            username: "Username",
+                            password: "Password",
+                        })
+                        .then((res) => {
+                            if (res.data.token) {
+                                const { token } = res.data;
+                                localStorage.setItem("jwtToken", token);
+                                setAuthorizationToken(token);
+                                const decoded = jwt_decode(token);
+                                setUserInfo(decoded);
+                            }
+                        });
+                }}
+            >
+                Log in!
+            </Button>
         </div>
     );
 }

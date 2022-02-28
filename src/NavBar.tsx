@@ -107,7 +107,7 @@ function NavBar() {
                 </Navbar>
             </div>
             <div>
-                <UserContext.Provider value={userInfo}>
+                <UserContext.Provider value={{ userInfo, setUserInfo }}>
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/create" element={<CreateTxn />} />
