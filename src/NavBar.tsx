@@ -90,8 +90,7 @@ function NavBar() {
                                                                 jwt_decode(
                                                                     token
                                                                 );
-                                                            // setUserInfo();
-                                                            console.log(
+                                                            setUserInfo(
                                                                 decoded
                                                             );
                                                         }
