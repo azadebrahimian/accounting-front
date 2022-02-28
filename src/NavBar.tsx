@@ -50,7 +50,7 @@ function NavBar() {
                             <Nav.Link as={Link} to="/">
                                 Home &nbsp; &nbsp;
                             </Nav.Link>
-                            {userInfo && (
+                            {/* {userInfo && (
                                 <>
                                     <Nav.Link as={Link} to="/create">
                                         Create a Transaction &nbsp; &nbsp;
@@ -59,7 +59,7 @@ function NavBar() {
                                         View Transaction History &nbsp; &nbsp;
                                     </Nav.Link>
                                 </>
-                            )}
+                            )} */}
                         </Nav>
                         <Navbar.Collapse className="justify-content-end">
                             {!userInfo && (
