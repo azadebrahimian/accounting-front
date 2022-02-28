@@ -108,6 +108,9 @@ function NavBar() {
                                                             setUserInfo(
                                                                 decoded
                                                             );
+                                                            console.log(
+                                                                decoded
+                                                            );
                                                         }
                                                     });
                                             }}
