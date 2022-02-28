@@ -15,17 +15,15 @@ import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
 import { UserContext } from "./UserContext";
-
 function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
     const [userInfo, setUserInfo] = useState(null);
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
         const tokenString = userToken;
-
         axios
             .get("/api/users/auth", {
                 headers: { "x-access-token": tokenString },
@@ -42,8 +40,8 @@ function NavBar() {
             });
     });
 
-    const Navigation = () => {
-        return (
+    return (
+        <>
             <div>
                 <Navbar bg="primary" variant="dark">
                     <Container>
@@ -68,7 +66,6 @@ function NavBar() {
                                         <Dropdown.Toggle id="dropdown-sign-in">
                                             Sign in
                                         </Dropdown.Toggle>
-
                                         <Dropdown.Menu>
                                             <Form>
                                                 <Form.Control
@@ -144,7 +141,7 @@ function NavBar() {
                                     onClick={() => {
                                         localStorage.removeItem("jwtToken");
                                         setUserInfo(null);
-                                        // navigate("/");
+                                        navigate("/");
                                     }}
                                 >
                                     Sign out
@@ -154,23 +151,17 @@ function NavBar() {
                     </Container>
                 </Navbar>
             </div>
-        );
-    };
-
-    return (
-        // <>
-        <div>
-            <Navigation />
-            <UserContext.Provider value={{ userInfo, setUserInfo }}>
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/create" element={<CreateTxn />} />
-                    <Route path="/history" element={<History />} />
-                    <Route path="/signup" element={<SignUp />} />
-                </Routes>
-            </UserContext.Provider>
-        </div>
-        // </>
+            <div>
+                <UserContext.Provider value={{ userInfo, setUserInfo }}>
+                    <Routes>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/create" element={<CreateTxn />} />
+                        <Route path="/history" element={<History />} />
+                        <Route path="/signup" element={<SignUp />} />
+                    </Routes>
+                </UserContext.Provider>
+            </div>
+        </>
     );
 }
 
