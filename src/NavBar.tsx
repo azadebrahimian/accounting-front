@@ -40,22 +40,6 @@ function NavBar() {
                     setUserInfo(null);
                 }
             });
-
-        // let validToken = false;
-        // async function validate() {
-        //     await checkIfTokenIsValid().then((res) => {
-        //         validToken = res.data.success;
-        //         if (validToken) {
-        //             const { token } = res.data;
-        //             const decoded = jwt_decode(token);
-        //             setUserInfo(decoded);
-        //         } else {
-        //             setUserInfo(null);
-        //         }
-        //     });
-        // }
-
-        // validate();
     });
 
     return (
@@ -159,6 +143,7 @@ function NavBar() {
                                 <Button
                                     onClick={() => {
                                         localStorage.removeItem("jwtToken");
+                                        setUserInfo(null);
                                     }}
                                 >
                                     Sign out
