@@ -14,7 +14,7 @@ import Home from "./Home.tsx";
 import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
-import setAuthorizationToken from "./utils/setAuthorizationToken";
+import setAuthorizationToken from "./util/setAuthorizationToken";
 
 function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
