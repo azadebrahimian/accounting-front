@@ -5,17 +5,19 @@ import { UserContext } from "./UserContext";
 function History() {
     const [tot, setTot] = useState(0);
     const user = useContext(UserContext);
-    console.log(user);
+    const tokenString = "Bearer " + user.jwtToken;
 
-    axios.get("/api/transactions/").then((res) => {
-        let sum = 0;
-        res.data.forEach((e) => {
-            if (e.transactionType === "spent") {
-                sum += e.amount;
-            }
+    axios
+        .get("/api/transactions/", { headers: { Authorization: tokenString } })
+        .then((res) => {
+            let sum = 0;
+            res.data.forEach((e) => {
+                if (e.transactionType === "spent") {
+                    sum += e.amount;
+                }
+            });
+            setTot(sum);
         });
-        setTot(sum);
-    });
 
     return (
         <div className="history-main">
