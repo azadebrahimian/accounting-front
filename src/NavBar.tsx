@@ -74,6 +74,10 @@ function NavBar() {
                                                         password: passwordLogin,
                                                     })
                                                     .then((res) => {
+                                                        console.log(
+                                                            "JEGIPWJGPWIG"
+                                                        );
+                                                        console.log(res.data);
                                                         if (res.data.token) {
                                                             const { token } =
                                                                 res.data;
