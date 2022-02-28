@@ -35,7 +35,9 @@ function NavBar() {
                 if (validToken) {
                     const validTokenString = userToken.split(" ")[1];
                     const decoded = jwt_decode(validTokenString);
-                    console.log(decoded);
+                    setUserInfo(decoded);
+                } else {
+                    setUserInfo(null);
                 }
             });
 
