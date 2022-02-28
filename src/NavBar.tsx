@@ -34,7 +34,7 @@ function NavBar() {
                         </Nav>
                         <Navbar.Collapse className="justify-content-end">
                             <Button href="/signup">Sign up</Button>
-                            <Dropdown autoClose="outside" align="end">
+                            <Dropdown autoClose="outside">
                                 <Dropdown.Toggle id="dropdown-sign-in">
                                     Sign in
                                 </Dropdown.Toggle>
@@ -63,6 +63,7 @@ function NavBar() {
                                         />
                                         <Button
                                             variant="primary"
+                                            type="submit"
                                             className="mx-3 my-2 w-auto"
                                             onClick={() => {
                                                 axios.post("/api/users/login", {
