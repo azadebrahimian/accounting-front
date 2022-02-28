@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
     Navbar,
     Nav,
@@ -21,6 +21,11 @@ function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
     const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+        // async function checkIfTokenIsAuthenticated()
+        setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));
+    })
 
     return (
         <>
