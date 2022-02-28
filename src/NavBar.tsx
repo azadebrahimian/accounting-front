@@ -1,4 +1,4 @@
-import { useState, useEffect, useNavigate } from "react";
+import { useState, useEffect } from "react";
 import {
     Navbar,
     Nav,
@@ -7,7 +7,7 @@ import {
     Dropdown,
     Form,
 } from "react-bootstrap";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Home from "./Home.tsx";
