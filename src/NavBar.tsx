@@ -23,21 +23,34 @@ function NavBar() {
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
-        let validToken = false;
-        async function validate() {
-            await checkIfTokenIsValid().then((res) => {
-                validToken = res.data.success;
-                if (validToken) {
-                    const { token } = res.data;
-                    const decoded = jwt_decode(token);
-                    setUserInfo(decoded);
-                } else {
-                    setUserInfo(null);
-                }
-            });
-        }
+        const userToken = localStorage.getItem("jwtToken") || "";
+        const tokenString = userToken;
 
-        validate();
+        axios
+            .get("/api/users/auth", {
+                headers: { "x-access-token": tokenString },
+            })
+            .then((res) => {
+                const validToken = res.data.success;
+                console.log("is token valid");
+                console.log(validToken);
+            });
+
+        // let validToken = false;
+        // async function validate() {
+        //     await checkIfTokenIsValid().then((res) => {
+        //         validToken = res.data.success;
+        //         if (validToken) {
+        //             const { token } = res.data;
+        //             const decoded = jwt_decode(token);
+        //             setUserInfo(decoded);
+        //         } else {
+        //             setUserInfo(null);
+        //         }
+        //     });
+        // }
+
+        // validate();
     });
 
     return (
@@ -115,7 +128,9 @@ function NavBar() {
                                                                         res.data;
                                                                     const decoded =
                                                                         jwt_decode(
-                                                                            token
+                                                                            token.split(
+                                                                                " "
+                                                                            )[1]
                                                                         );
                                                                     localStorage.setItem(
                                                                         "jwtToken",
