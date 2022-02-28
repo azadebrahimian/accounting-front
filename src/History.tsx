@@ -1,8 +1,11 @@
 import { useState, useContext } from "react";
 import axios from "axios";
+import { UserContext } from "./UserContext";
 
 function History() {
     const [tot, setTot] = useState(0);
+    const user = useContext(UserContext);
+    console.log(user);
 
     axios.get("/api/transactions/").then((res) => {
         let sum = 0;
