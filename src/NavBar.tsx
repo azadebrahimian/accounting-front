@@ -37,12 +37,15 @@ function NavBar() {
                     <Container>
                         <Nav>
                             <Nav.Link href="/">Home &nbsp; &nbsp;</Nav.Link>
+                            {userInfo && 
+                            <>
                             <Nav.Link href="/create">
                                 Create a Transaction &nbsp; &nbsp;
                             </Nav.Link>
                             <Nav.Link href="/history">
                                 View Transaction History &nbsp; &nbsp;
                             </Nav.Link>
+                            </>}
                         </Nav>
                         <Navbar.Collapse className="justify-content-end">
                             <Button href="/signup">Sign up</Button>
