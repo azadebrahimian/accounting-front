@@ -9,10 +9,12 @@ import {
 } from "react-bootstrap";
 import { Route, Routes } from "react-router-dom";
 import axios from "axios";
+import jwt_decode from "jwt-decode";
 import Home from "./Home.tsx";
 import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
+import setAuthorizationToken from "../utils/setAuthorizationToken";
 
 function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
@@ -66,10 +68,29 @@ function NavBar() {
                                             type="submit"
                                             className="mx-3 my-2 w-auto"
                                             onClick={() => {
-                                                axios.post("/api/users/login", {
-                                                    username: usernameLogin,
-                                                    password: passwordLogin,
-                                                });
+                                                axios
+                                                    .post("/api/users/login", {
+                                                        username: usernameLogin,
+                                                        password: passwordLogin,
+                                                    })
+                                                    .then((res) => {
+                                                        if (res.data.token) {
+                                                            const { token } =
+                                                                res.data;
+                                                            localStorage.setItem(
+                                                                "jwtToken",
+                                                                token
+                                                            );
+                                                            setAuthorizationToken(
+                                                                token
+                                                            );
+                                                            console.log(
+                                                                jwt_decode(
+                                                                    token
+                                                                )
+                                                            );
+                                                        }
+                                                    });
                                             }}
                                         >
                                             Log in!
