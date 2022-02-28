@@ -61,7 +61,7 @@ function NavBar() {
                                 </>
                             )} */}
                         </Nav>
-                        <Navbar.Collapse className="justify-content-end">
+                        {/* <Navbar.Collapse className="justify-content-end">
                             {!userInfo && (
                                 <>
                                     <Button href="/signup">Sign up</Button>
@@ -150,7 +150,7 @@ function NavBar() {
                                     Sign out
                                 </Button>
                             )}
-                        </Navbar.Collapse>
+                        </Navbar.Collapse> */}
                     </Container>
                 </Navbar>
             </div>
