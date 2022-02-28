@@ -47,13 +47,15 @@ function NavBar() {
                 <Navbar bg="primary" variant="dark">
                     <Container>
                         <Nav>
-                            <Nav.Link href="/">Home &nbsp; &nbsp;</Nav.Link>
+                            <Nav.Link as={Link} to="/">
+                                Home &nbsp; &nbsp;
+                            </Nav.Link>
                             {userInfo && (
                                 <>
-                                    <Nav.Link href="/create">
+                                    <Nav.Link as={Link} to="/create">
                                         Create a Transaction &nbsp; &nbsp;
                                     </Nav.Link>
-                                    <Nav.Link href="/history">
+                                    <Nav.Link as={Link} to="/history">
                                         View Transaction History &nbsp; &nbsp;
                                     </Nav.Link>
                                 </>
