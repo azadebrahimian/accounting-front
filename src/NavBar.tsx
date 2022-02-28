@@ -63,7 +63,6 @@ function NavBar() {
                                         />
                                         <Button
                                             variant="primary"
-                                            type="submit"
                                             className="mx-3 my-2 w-auto"
                                             onClick={() => {
                                                 axios.post("/api/users/login", {
