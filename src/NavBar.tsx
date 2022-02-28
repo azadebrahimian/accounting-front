@@ -7,7 +7,7 @@ import {
     Dropdown,
     Form,
 } from "react-bootstrap";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, Link } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 import Home from "./Home.tsx";
@@ -20,6 +20,7 @@ function NavBar() {
     const [passwordLogin, setPasswordLogin] = useState("");
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
+    console.log("HERHEHHERHE");
 
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
