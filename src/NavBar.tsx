@@ -86,13 +86,13 @@ function NavBar() {
                                                             setAuthorizationToken(
                                                                 token
                                                             );
-                                                            setUserInfo(
+                                                            const decoded =
                                                                 jwt_decode(
                                                                     token
-                                                                )
-                                                            );
+                                                                );
+                                                            // setUserInfo();
                                                             console.log(
-                                                                userInfo
+                                                                decoded
                                                             );
                                                         }
                                                     });
