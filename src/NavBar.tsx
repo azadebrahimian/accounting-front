@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useNavigate } from "react";
 import {
     Navbar,
     Nav,
@@ -14,13 +14,13 @@ import Home from "./Home.tsx";
 import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
-import checkIfTokenIsValid from "./util/auth";
 import { UserContext } from "./UserContext";
 
 function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
     const [userInfo, setUserInfo] = useState(null);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
@@ -144,6 +144,7 @@ function NavBar() {
                                     onClick={() => {
                                         localStorage.removeItem("jwtToken");
                                         setUserInfo(null);
+                                        navigate("/");
                                     }}
                                 >
                                     Sign out
