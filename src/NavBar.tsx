@@ -23,8 +23,10 @@ function NavBar() {
     const [userInfo, setUserInfo] = useState(null);
 
     useEffect(() => {
-        // async function checkIfTokenIsAuthenticated()
         const storedToken = localStorage.getItem("jwtToken");
+        // async function checkIfTokenIsAuthenticated() {
+        //     axios.get("/api/users/auth")
+        // }
         if (storedToken) {setUserInfo(jwt_decode(localStorage.getItem("jwtToken")));}
     });
 

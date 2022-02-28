@@ -5,7 +5,6 @@ import { UserContext } from "./UserContext";
 
 function Home() {
     const user = useContext(UserContext);
-    console.log(user);
 
     if (!user.userInfo) {
         return (
