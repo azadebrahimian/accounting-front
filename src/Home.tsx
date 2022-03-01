@@ -4,19 +4,19 @@ import "./Home.scss";
 import { UserContext } from "./UserContext";
 
 function Home() {
-    // const { userInfo, setUserInfo } = useContext(UserContext);
+    const { userInfo, setUserInfo } = useContext(UserContext);
 
-    // if (!userInfo) {
-    //     return (
-    //         <div className="home-main">
-    //             <h1>Please login</h1>
-    //         </div>
-    //     );
-    // }
+    if (!userInfo) {
+        return (
+            <div className="home-main">
+                <h1>Please login</h1>
+            </div>
+        );
+    }
 
     return (
         <div className="home-main">
-            <h1>Welcome back "JEIGOJW".</h1>
+            <h1>Welcome back {userInfo.username}.</h1>
             <h3>Today you spent: $69</h3>
             <h3>So far this week you spent: $420</h3>
             <div className="remaining-week-section">
