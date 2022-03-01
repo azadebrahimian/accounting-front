@@ -20,6 +20,7 @@ function Home() {
                     weeklyTransactions = res.data;
 
                     const today = new Date();
+                    console.log(today);
                     weeklyTransactions.forEach((wt) => {
                         if (new Date(wt.transactionDate).getDate() === today.getDate()) {
                             dailyTotal += wt.amount;
