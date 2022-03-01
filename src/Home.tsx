@@ -21,11 +21,12 @@ function Home() {
 
                     const today = new Date();
                     weeklyTransactions.forEach((wt) => {
-                        if (wt.transactionDate.getDate() === today.getDate()) {
-                            dailyTotal += wt.amount;
-                        }
+                        console.log(wt);
+                        // if (wt.transactionDate.getDate() === today.getDate()) {
+                        //     dailyTotal += wt.amount;
+                        // }
 
-                        weeklyTotal += wt.amount;
+                        // weeklyTotal += wt.amount;
                     });
                 });
         }
