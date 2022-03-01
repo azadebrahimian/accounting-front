@@ -6,6 +6,7 @@ import "./Home.scss";
 
 function Home() {
     const { userInfo, setUserInfo } = useContext(UserContext);
+    console.log(userInfo);
 
     useEffect(() => {
         if (userInfo) {
@@ -14,7 +15,7 @@ function Home() {
                 .get(`/api/transactions/${username}/currentWeek`)
                 .then(() => {});
         }
-    }, []);
+    });
 
     if (!userInfo) {
         return (
