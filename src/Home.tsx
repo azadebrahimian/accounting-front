@@ -8,11 +8,12 @@ function Home() {
   const { userInfo } = useContext(UserContext);
   const [dailySpending, setDailySpending] = useState(0);
   const [weeklySpending, setWeeklySpending] = useState(0);
+  const [weeklyRemaining, setWeeklyRemaining] = useState(0);
   let weeklyTransactions = [];
 
   useEffect(() => {
     if (userInfo) {
-      const username = userInfo.username;
+      const { username, weeklyLimit } = userInfo;
       axios.get(`/api/transactions/${username}/currentWeek`).then((res) => {
         weeklyTransactions = res.data;
         let dailyTotal = 0;
@@ -33,6 +34,7 @@ function Home() {
 
         setDailySpending(dailyTotal);
         setWeeklySpending(weeklyTotal);
+        setWeeklyRemaining(weeklyLimit - weeklyTotal);
       });
     }
   });
@@ -53,7 +55,7 @@ function Home() {
       <div className="remaining-week-section">
         <h2>
           Remaining balance this week:{" "}
-          <span className="remaining-balance">$99</span>
+          <span className="remaining-balance">${weeklyRemaining.toFixed(2)}</span>
         </h2>
       </div>
     </div>
