@@ -31,9 +31,8 @@ function Home() {
           weeklyTotal += wt.amount;
         });
 
-        // round to 2 decimal points
-        setDailySpending(parseInt((Math.round(dailyTotal * 100) / 100).toFixed(2)));
-        setWeeklySpending(parseInt((Math.round(weeklyTotal * 100) / 100).toFixed(2)));
+        setDailySpending(dailyTotal);
+        setWeeklySpending(weeklyTotal);
       });
     }
   });
@@ -49,8 +48,8 @@ function Home() {
   return (
     <div className="home-main">
       <h1>Welcome back {userInfo.username}.</h1>
-      <h3>Today you spent: ${dailySpending}</h3>
-      <h3>So far this week you spent: ${weeklySpending}</h3>
+      <h3>Today you spent: ${dailySpending.toFixed(2)}</h3>
+      <h3>So far this week you spent: ${weeklySpending.toFixed(2)}</h3>
       <div className="remaining-week-section">
         <h2>
           Remaining balance this week:{" "}
