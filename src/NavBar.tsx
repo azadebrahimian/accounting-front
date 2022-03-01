@@ -24,6 +24,7 @@ function NavBar() {
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
         const tokenString = userToken;
+        console.log(tokenString);
         axios
             .get("/api/users/auth", {
                 headers: { "x-access-token": tokenString },
