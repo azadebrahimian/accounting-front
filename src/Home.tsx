@@ -26,6 +26,9 @@ function Home() {
                         }
 
                         weeklyTotal += wt.amount;
+
+                        console.log(weeklyTotal);
+                        console.log(dailyTotal);
                     });
                 });
         }
