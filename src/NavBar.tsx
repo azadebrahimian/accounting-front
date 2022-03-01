@@ -15,6 +15,9 @@ import CreateTxn from "./CreateTxn.tsx";
 import History from "./History.tsx";
 import SignUp from "./SignUp.tsx";
 import { UserContext } from "./UserContext";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 function NavBar() {
     const [usernameLogin, setUsernameLogin] = useState("");
     const [passwordLogin, setPasswordLogin] = useState("");
@@ -94,7 +97,7 @@ function NavBar() {
                                                     variant="primary"
                                                     type="submit"
                                                     className="mx-3 my-2 w-auto"
-                                                    onClick={() => {
+                                                    onClick={(e) => {
                                                         axios
                                                             .post(
                                                                 "/api/users/login",
@@ -130,6 +133,22 @@ function NavBar() {
                                                                     navigate(
                                                                         "/"
                                                                     );
+                                                                } else {
+                                                                    if (
+                                                                        res.data
+                                                                            .error
+                                                                    ) {
+                                                                        e.preventDefault();
+                                                                        toast.error(
+                                                                            "Invalid credentials."
+                                                                        );
+                                                                        setUsernameLogin(
+                                                                            ""
+                                                                        );
+                                                                        setPasswordLogin(
+                                                                            ""
+                                                                        );
+                                                                    }
                                                                 }
                                                             });
                                                     }}
@@ -155,6 +174,17 @@ function NavBar() {
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={2500}
+                    hideProgressBar
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable={false}
+                    pauseOnHover
+                />
             </div>
             <div>
                 <UserContext.Provider value={{ userInfo, setUserInfo }}>
