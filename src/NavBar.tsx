@@ -77,6 +77,7 @@ function NavBar() {
                                                 <Form.Control
                                                     autoFocus
                                                     className="mx-3 my-2 w-auto"
+                                                    value={usernameLogin}
                                                     placeholder="Username"
                                                     onChange={(e) => {
                                                         setUsernameLogin(
@@ -88,6 +89,7 @@ function NavBar() {
                                                     className="mx-3 my-2 w-auto"
                                                     type="password"
                                                     placeholder="Password"
+                                                    value={passwordLogin}
                                                     onChange={(e) => {
                                                         setPasswordLogin(
                                                             e.target.value
