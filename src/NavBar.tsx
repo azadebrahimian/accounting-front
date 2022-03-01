@@ -190,7 +190,7 @@ function NavBar() {
                     rtl={false}
                     pauseOnFocusLoss
                     draggable={false}
-                    pauseOnHover
+                    pauseOnHover={false}
                 />
             </div>
             <div>
