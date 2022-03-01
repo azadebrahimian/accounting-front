@@ -22,24 +22,24 @@ function NavBar() {
     const navigate = useNavigate();
     console.log("HERHEHHERHE");
 
-    useEffect(() => {
-        const userToken = localStorage.getItem("jwtToken") || "";
-        const tokenString = userToken;
-        axios
-            .get("/api/users/auth", {
-                headers: { "x-access-token": tokenString },
-            })
-            .then((res) => {
-                const validToken = res.data.success;
-                if (validToken) {
-                    const validTokenString = userToken.split(" ")[1];
-                    const decoded = jwt_decode(validTokenString);
-                    setUserInfo(decoded);
-                } else {
-                    setUserInfo(null);
-                }
-            });
-    });
+    // useEffect(() => {
+    //     const userToken = localStorage.getItem("jwtToken") || "";
+    //     const tokenString = userToken;
+    //     axios
+    //         .get("/api/users/auth", {
+    //             headers: { "x-access-token": tokenString },
+    //         })
+    //         .then((res) => {
+    //             const validToken = res.data.success;
+    //             if (validToken) {
+    //                 const validTokenString = userToken.split(" ")[1];
+    //                 const decoded = jwt_decode(validTokenString);
+    //                 setUserInfo(decoded);
+    //             } else {
+    //                 setUserInfo(null);
+    //             }
+    //         });
+    // });
 
     return (
         <>
@@ -50,7 +50,7 @@ function NavBar() {
                             <Nav.Link as={Link} to="/">
                                 Home &nbsp; &nbsp;
                             </Nav.Link>
-                            {/* {userInfo && (
+                            {userInfo && (
                                 <>
                                     <Nav.Link as={Link} to="/create">
                                         Create a Transaction &nbsp; &nbsp;
@@ -59,9 +59,9 @@ function NavBar() {
                                         View Transaction History &nbsp; &nbsp;
                                     </Nav.Link>
                                 </>
-                            )} */}
+                            )}
                         </Nav>
-                        {/* <Navbar.Collapse className="justify-content-end">
+                        <Navbar.Collapse className="justify-content-end">
                             {!userInfo && (
                                 <>
                                     <Button href="/signup">Sign up</Button>
@@ -150,7 +150,7 @@ function NavBar() {
                                     Sign out
                                 </Button>
                             )}
-                        </Navbar.Collapse> */}
+                        </Navbar.Collapse>
                     </Container>
                 </Navbar>
             </div>
@@ -158,9 +158,9 @@ function NavBar() {
                 <UserContext.Provider value={{ userInfo, setUserInfo }}>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        {/* <Route path="/create" element={<CreateTxn />} />
+                        <Route path="/create" element={<CreateTxn />} />
                         <Route path="/history" element={<History />} />
-                        <Route path="/signup" element={<SignUp />} /> */}
+                        <Route path="/signup" element={<SignUp />} />
                     </Routes>
                 </UserContext.Provider>
             </div>
