@@ -6,7 +6,6 @@ import "./Home.scss";
 
 function Home() {
     const { userInfo, setUserInfo } = useContext(UserContext);
-    console.log(userInfo);
 
     useEffect(() => {
         if (userInfo) {
