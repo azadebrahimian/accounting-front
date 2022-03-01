@@ -26,9 +26,6 @@ function Home() {
                         }
 
                         weeklyTotal += wt.amount;
-
-                        console.log(weeklyTotal);
-                        console.log(dailyTotal);
                     });
                 });
         }
@@ -41,6 +38,9 @@ function Home() {
             </div>
         );
     }
+
+    console.log("outside effect");
+    console.log(weeklyTotal);
 
     return (
         <div className="home-main">
