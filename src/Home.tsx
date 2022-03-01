@@ -8,8 +8,12 @@ function Home() {
     const { userInfo, setUserInfo } = useContext(UserContext);
 
     useEffect(() => {
-        const username = userInfo.username;
-        axios.get(`/api/transactions/${username}/currentWeek`).then(() => {});
+        if (userInfo) {
+            const username = userInfo.username;
+            axios
+                .get(`/api/transactions/${username}/currentWeek`)
+                .then(() => {});
+        }
     }, []);
 
     if (!userInfo) {
