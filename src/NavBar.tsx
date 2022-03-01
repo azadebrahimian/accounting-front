@@ -39,7 +39,7 @@ function NavBar() {
                     setUserInfo(null);
                 }
             });
-    });
+    }, []);
 
     return (
         <>
