@@ -97,6 +97,10 @@ function NavBar() {
                                                 <Button
                                                     variant="primary"
                                                     className="mx-3 my-2 w-auto"
+                                                    disabled={
+                                                        !usernameLogin ||
+                                                        !passwordLogin
+                                                    }
                                                     onClick={(e) => {
                                                         axios
                                                             .post(
@@ -109,9 +113,6 @@ function NavBar() {
                                                                 }
                                                             )
                                                             .then((res) => {
-                                                                console.log(
-                                                                    res.data
-                                                                );
                                                                 if (
                                                                     res.data
                                                                         .token
@@ -179,6 +180,7 @@ function NavBar() {
                 </Navbar>
                 <ToastContainer
                     position="top-right"
+                    theme="colored"
                     autoClose={2500}
                     hideProgressBar
                     newestOnTop={false}
