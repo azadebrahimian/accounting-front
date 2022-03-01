@@ -22,24 +22,24 @@ function NavBar() {
     const navigate = useNavigate();
     console.log("HERHEHHERHE");
 
-    useEffect(() => {
-        const userToken = localStorage.getItem("jwtToken") || "";
-        const tokenString = userToken;
-        axios
-            .get("/api/users/auth", {
-                headers: { "x-access-token": tokenString },
-            })
-            .then((res) => {
-                const validToken = res.data.success;
-                if (validToken) {
-                    const validTokenString = userToken.split(" ")[1];
-                    const decoded = jwt_decode(validTokenString);
-                    setUserInfo(decoded);
-                } else {
-                    setUserInfo(null);
-                }
-            });
-    });
+    // useEffect(() => {
+    //     const userToken = localStorage.getItem("jwtToken") || "";
+    //     const tokenString = userToken;
+    //     axios
+    //         .get("/api/users/auth", {
+    //             headers: { "x-access-token": tokenString },
+    //         })
+    //         .then((res) => {
+    //             const validToken = res.data.success;
+    //             if (validToken) {
+    //                 const validTokenString = userToken.split(" ")[1];
+    //                 const decoded = jwt_decode(validTokenString);
+    //                 setUserInfo(decoded);
+    //             } else {
+    //                 setUserInfo(null);
+    //             }
+    //         });
+    // });
 
     return (
         <>
@@ -158,9 +158,9 @@ function NavBar() {
                 <UserContext.Provider value={{ userInfo, setUserInfo }}>
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/create" element={<CreateTxn />} />
+                        {/* <Route path="/create" element={<CreateTxn />} />
                         <Route path="/history" element={<History />} />
-                        <Route path="/signup" element={<SignUp />} />
+                        <Route path="/signup" element={<SignUp />} /> */}
                     </Routes>
                 </UserContext.Provider>
             </div>
