@@ -109,6 +109,9 @@ function NavBar() {
                                                                 }
                                                             )
                                                             .then((res) => {
+                                                                console.log(
+                                                                    res.data
+                                                                );
                                                                 if (
                                                                     res.data
                                                                         .token
