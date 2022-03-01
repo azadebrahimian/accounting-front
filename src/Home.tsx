@@ -31,8 +31,9 @@ function Home() {
           weeklyTotal += wt.amount;
         });
 
-        setDailySpending(dailyTotal);
-        setWeeklySpending(weeklyTotal);
+        // round to 2 decimal points
+        setDailySpending(parseInt((Math.round(dailyTotal * 100) / 100).toFixed(2)));
+        setWeeklySpending(parseInt((Math.round(weeklyTotal * 100) / 100).toFixed(2)));
       });
     }
   });
