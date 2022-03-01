@@ -115,6 +115,7 @@ function NavBar() {
                                                                         token,
                                                                     } =
                                                                         res.data;
+                                                                    console.log(res.data);
                                                                     const decoded =
                                                                         jwt_decode(
                                                                             token.split(
