@@ -2,6 +2,7 @@ import { useState } from "react";
 import { TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import { Button } from "react-bootstrap";
 import { isUserInputPriceInvalid } from "./util/UserInputUtil";
+import { UserContext } from "./UserContext";
 
 import "./CreateTxn.scss";
 import axios from "axios";
@@ -12,6 +13,7 @@ function CreateTxn() {
     const [transactionType, setTransactionType] = useState("spent");
     const [location, setLocation] = useState("");
     const [date, setDate] = useState(new Date().toISOString().split("T")[0]);
+    const { userInfo, setUserInfo } = useContext(UserContext);
 
     const amountErrorMessage =
         "Amount entered must be a non-negative, valid price.";
@@ -90,6 +92,7 @@ function CreateTxn() {
                                 location: location,
                                 transactionType: transactionType,
                                 transactionDate: date,
+                                username: userInfo.username,
                             })
                             .then((res) => {
                                 console.log("posted!");

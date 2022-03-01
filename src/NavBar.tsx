@@ -20,7 +20,6 @@ function NavBar() {
     const [passwordLogin, setPasswordLogin] = useState("");
     const [userInfo, setUserInfo] = useState(null);
     const navigate = useNavigate();
-    console.log("HERHEHHERHE");
 
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
@@ -93,7 +92,7 @@ function NavBar() {
                                                 />
                                                 <Button
                                                     variant="primary"
-                                                    // type="submit"
+                                                    type="submit"
                                                     className="mx-3 my-2 w-auto"
                                                     onClick={() => {
                                                         axios
@@ -127,6 +126,9 @@ function NavBar() {
                                                                     );
                                                                     setUserInfo(
                                                                         decoded
+                                                                    );
+                                                                    navigate(
+                                                                        "/"
                                                                     );
                                                                 }
                                                             });

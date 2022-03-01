@@ -1,10 +1,16 @@
 import { useContext, useEffect } from "react";
+import axios from "axios";
+import { UserContext } from "./UserContext";
 
 import "./Home.scss";
-import { UserContext } from "./UserContext";
 
 function Home() {
     const { userInfo, setUserInfo } = useContext(UserContext);
+
+    useEffect(() => {
+        const username = userInfo.username;
+        axios.get(`/api/transactions/${username}/currentWeek`).then(() => {});
+    }, []);
 
     if (!userInfo) {
         return (
