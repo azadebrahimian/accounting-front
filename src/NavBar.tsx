@@ -93,7 +93,6 @@ function NavBar() {
                                                 />
                                                 <Button
                                                     variant="primary"
-                                                    // type="submit"
                                                     className="mx-3 my-2 w-auto"
                                                     onClick={() => {
                                                         axios
@@ -115,7 +114,6 @@ function NavBar() {
                                                                         token,
                                                                     } =
                                                                         res.data;
-                                                                    console.log(res.data);
                                                                     const decoded =
                                                                         jwt_decode(
                                                                             token.split(

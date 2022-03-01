@@ -12,7 +12,9 @@ function Home() {
             const username = userInfo.username;
             axios
                 .get(`/api/transactions/${username}/currentWeek`)
-                .then(() => {});
+                .then((res) => {
+                    console.log(res.data);
+                });
         }
     });
 
