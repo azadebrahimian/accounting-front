@@ -24,7 +24,7 @@ function NavBar() {
     useEffect(() => {
         const userToken = localStorage.getItem("jwtToken") || "";
         const tokenString = userToken;
-        console.log(tokenString);
+
         axios
             .get("/api/users/auth", {
                 headers: { "x-access-token": tokenString },
@@ -93,7 +93,7 @@ function NavBar() {
                                                 />
                                                 <Button
                                                     variant="primary"
-                                                    type="submit"
+                                                    // type="submit"
                                                     className="mx-3 my-2 w-auto"
                                                     onClick={() => {
                                                         axios
