@@ -15,3 +15,6 @@ function doesValueHaveMoreThanTwoDecimals(str) {
 
     return false;
 }
+
+export const amountErrorMessage =
+    "Amount entered must be a non-negative, valid price.";
