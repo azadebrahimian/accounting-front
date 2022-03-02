@@ -113,8 +113,14 @@ function Home() {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button variant="secondary">Cancel</Button>
-                    <Button variant="primary">Submit</Button>
+                    <Button variant="secondary" onClick={() => {
+                      setOpenDialog(false);
+                    }}>Cancel</Button>
+                    <Button variant="primary" type="submit" onClick={() => {
+                      axios.post("/api/users/updateWeeklyBudget", { weeklyLimit: newWeeklyBudget }).then((res) => {
+                        setOpenDialog(true);
+                      });
+                    }}>Submit</Button>
                 </DialogActions>
             </Dialog>
         </div>
