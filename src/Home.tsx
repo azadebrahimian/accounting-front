@@ -117,7 +117,7 @@ function Home() {
                       setOpenDialog(false);
                     }}>Cancel</Button>
                     <Button variant="primary" type="submit" onClick={() => {
-                      axios.post("/api/users/updateWeeklyBudget", { weeklyLimit: newWeeklyBudget }).then((res) => {
+                      axios.post("/api/users/updateWeeklyBudget", { weeklyLimit: newWeeklyBudget, username: userInfo.username }).then((res) => {
                         setOpenDialog(true);
                       });
                     }}>Submit</Button>
