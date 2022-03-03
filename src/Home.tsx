@@ -158,7 +158,7 @@ function Home() {
                   username: userInfo.username,
                 })
                 .then((res) => {
-                  setOpenDialog(true);
+                  setOpenDialog(false);
                 });
             }}
           >
