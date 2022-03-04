@@ -25,7 +25,6 @@ function Home() {
   const [openDialog, setOpenDialog] = useState(false);
   const [amountError, setAmountError] = useState(false);
   const [newWeeklyBudget, setNewWeeklyBudget] = useState(0);
-  let weeklyTransactions = [];
 
   useEffect(() => {
     if (userInfo) {
@@ -35,13 +34,13 @@ function Home() {
         const currentWeekData = await axios.get(
           `/api/transactions/${username}/currentWeek`
         );
+        const weeklyBudget = await axios.get(`/api/users/getWeeklyBudget/${username}`);
 
-        weeklyTransactions = currentWeekData.data;
         let dailyTotal = 0;
         let weeklyTotal = 0;
 
         const today = new Date();
-        weeklyTransactions.forEach((wt) => {
+        currentWeekData.data.forEach((wt) => {
           if (
             new Date(
               wt.transactionDate.replace(/-/g, "/").replace(/T.+/, "")
@@ -55,36 +54,10 @@ function Home() {
 
         setDailySpending(dailyTotal);
         setWeeklySpending(weeklyTotal);
-
-        const weeklyBudget = await axios.get(`/api/users/getWeeklyBudget/${username}`);
-        setWeeklyRemaining(weeklyBudget.data.weeklyLimit - weeklySpending);
+        setWeeklyRemaining(weeklyBudget.data.weeklyLimit - weeklyTotal);
       };
 
       fetchData();
-
-      // axios.get(`/api/transactions/${username}/currentWeek`).then((res) => {
-      //   weeklyTransactions = res.data;
-      //   let dailyTotal = 0;
-      //   let weeklyTotal = 0;
-
-      //   const today = new Date();
-      //   weeklyTransactions.forEach((wt) => {
-      //     if (
-      //       new Date(
-      //         wt.transactionDate.replace(/-/g, "/").replace(/T.+/, "")
-      //       ).getDate() === today.getDate()
-      //     ) {
-      //       dailyTotal += wt.amount;
-      //     }
-
-      //     weeklyTotal += wt.amount;
-      //   });
-
-      //   setDailySpending(dailyTotal);
-      //   setWeeklySpending(weeklyTotal);
-      //   // setWeeklyRemaining(weeklyLimit - weeklyTotal);
-      // });
-      // axios.get("/api/users/getWeeklyBudget").then((res) => {});
     }
   });
 

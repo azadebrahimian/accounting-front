@@ -1,31 +1,84 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
+import { DataGrid, GridColDef, getGridStringOperators, getGridNumericOperators } from "@mui/x-data-grid";
 import axios from "axios";
 import { UserContext } from "./UserContext";
+import { sampleData } from "./util/json";
+import getFormattedDate from "./util/DateFormat";
+
+import "./History.scss";
 
 function History() {
-    const [tot, setTot] = useState(0);
-    const user = useContext(UserContext);
+  const { userInfo } = useContext(UserContext);
+  const [transactionData, setTransactionData] = useState([]);
+  const [transactionDataModified, setTransactionDataModified] = useState([]);
 
-    axios
-        .get("/api/transactions/", {
-            headers: { "x-access-token": user.jwtToken },
-        })
-        .then((res) => {
-            let sum = 0;
-            res.data.forEach((e) => {
-                if (e.transactionType === "spent") {
-                    sum += e.amount;
-                }
-            });
-            setTot(sum);
-        });
+  useEffect(() => {
+    if (userInfo) {
+      const { username } = userInfo;
+      const fetchData = async () => {
+        const allTransactions = await axios.get(
+          `/api/transactions/${username}`
+        );
+        setTransactionData(allTransactions.data);
+        setTransactionDataModified(allTransactions.data);
+      };
 
-    return (
-        <div className="history-main">
-            <h1>This is where you can view your transaction history....</h1>
-            <p>In total you spent: {tot}</p>
-        </div>
-    );
+      fetchData();
+    }
+  });
+
+  const columns: GridColDef[] = [
+    {
+      field: "location",
+      headerName: "Location",
+      flex: 1,
+      filterOperators: getGridStringOperators().filter(
+        (operator) => operator.value === 'equals' || operator.value === 'isAnyOf',
+      ),
+    },
+    {
+      field: "amount",
+      headerName: "Amount",
+      flex: 1,
+      align: "left",
+      headerAlign: "left",
+      type: "number",
+      filterOperators: getGridNumericOperators().forEach((operator) => {
+          console.log(operator);
+      })
+    },
+    {
+      field: "transactionType",
+      headerName: "Type",
+      flex: 1,
+    },
+    {
+      field: "transactionDate",
+      headerName: "Date",
+      flex: 1,
+      type: "date",
+      valueFormatter: (params) => {
+        const valueFormatted = getFormattedDate(params.value);
+        return valueFormatted;
+      },
+    },
+  ];
+
+//   if (sampleData) {
+//     sampleData.forEach((t) => {
+//       t.transactionDate = getFormattedDate(t.transactionDate);
+//     });
+//   }
+
+  return (
+    // <div className="history-main">
+    <div style={{ display: "flex", height: 500 }}>
+      <div style={{ flexGrow: 1 }}>
+        <DataGrid rows={sampleData} columns={columns} />
+      </div>
+    </div>
+    // </div>
+  );
 }
 
 export default History;
