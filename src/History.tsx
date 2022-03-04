@@ -4,7 +4,6 @@ import {
     GridColDef,
     getGridStringOperators,
     getGridNumericOperators,
-    getGridSingleSelectOperators,
 } from "@mui/x-data-grid";
 import axios from "axios";
 import { UserContext } from "./UserContext";
@@ -16,7 +15,6 @@ import "./History.scss";
 function History() {
     const { userInfo } = useContext(UserContext);
     const [transactionData, setTransactionData] = useState([]);
-    const [transactionDataModified, setTransactionDataModified] = useState([]);
 
     useEffect(() => {
         if (userInfo) {
@@ -26,7 +24,6 @@ function History() {
                     `/api/transactions/${username}`
                 );
                 setTransactionData(allTransactions.data);
-                setTransactionDataModified(allTransactions.data);
             };
 
             fetchData();
@@ -80,11 +77,10 @@ function History() {
     ];
 
     return (
-        // <div className="history-main">
         <div style={{ display: "flex", height: 700 }}>
             <div style={{ flexGrow: 1 }}>
                 <DataGrid
-                    rows={sampleData}
+                    rows={transactionData}
                     columns={columns}
                     initialState={{
                         sorting: {
@@ -96,7 +92,6 @@ function History() {
                 />
             </div>
         </div>
-        // </div>
     );
 }
 
