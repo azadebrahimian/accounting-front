@@ -46,6 +46,7 @@ function NavBar() {
 
     return (
         <>
+            <title>Budgeting App</title>
             <div>
                 <Navbar bg="primary" variant="dark">
                     <Container>
