@@ -95,7 +95,7 @@ function Home() {
         <DialogTitle>Change Weekly Budget</DialogTitle>
         <DialogContent>
           <DialogContentText>
-            Your current weekly budget is $100. What should your new budget be?
+            Your current weekly budget is ${weeklyRemaining}. What should your new budget be?
           </DialogContentText>
           <TextField
             variant="standard"
