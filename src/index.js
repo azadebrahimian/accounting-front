@@ -9,5 +9,6 @@ ReactDOM.render(
     <NavBar />
   </BrowserRouter>,
 
-  document.getElementById('root')
+  document.getElementById('root'),
+  document.title = "Budgeting App"
 );
