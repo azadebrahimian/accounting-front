@@ -74,6 +74,7 @@ function History() {
             type: "date",
             valueFormatter: (params) => {
                 const valueFormatted = getFormattedDate(params.value);
+                console.log(params.value);
                 console.log(valueFormatted);
                 return valueFormatted;
             },
