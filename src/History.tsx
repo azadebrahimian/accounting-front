@@ -45,10 +45,11 @@ function History() {
         );
     }
 
-    console.log(transactionData);
-    // console.log(
-    //     convertDateToUTC(new Date(transactionData[0]["transactionDate"]))
-    // );
+    if (transactionData) {
+        console.log(
+            convertDateToUTC(new Date(transactionData[0]["transactionDate"]))
+        );
+    }
 
     const columns: GridColDef[] = [
         {
