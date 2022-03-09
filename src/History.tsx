@@ -45,11 +45,11 @@ function History() {
         );
     }
 
-    if (transactionData.length > 0) {
-        console.log(
-            convertDateToUTC(new Date(transactionData[0]["transactionDate"]))
-        );
-    }
+    // if (transactionData.length > 0) {
+    //     console.log(
+    //         convertDateToUTC(new Date(transactionData[0]["transactionDate"]))
+    //     );
+    // }
 
     const columns: GridColDef[] = [
         {
@@ -93,7 +93,11 @@ function History() {
                 const valueFormatted = getFormattedDate(params.value);
                 return valueFormatted;
             },
-            valueGetter: ({ value }) => value && new Date(value),
+            valueGetter: ({ value }) =>
+                value &&
+                convertDateToUTC(
+                    new Date(transactionData[0]["transactionDate"])
+                ),
         },
     ];
 
