@@ -28,6 +28,7 @@ function History() {
                     delete Object.assign(t, { ["id"]: t["_id"] })["_id"];
                 });
                 setTransactionData(allTransactions.data);
+                console.log(transactionData);
             };
 
             fetchData();
@@ -74,8 +75,6 @@ function History() {
             type: "date",
             valueFormatter: (params) => {
                 const valueFormatted = getFormattedDate(params.value);
-                console.log(params.value);
-                console.log(valueFormatted);
                 return valueFormatted;
             },
             valueGetter: ({ value }) => value && new Date(value),
