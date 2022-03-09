@@ -28,12 +28,13 @@ function History() {
                     delete Object.assign(t, { ["id"]: t["_id"] })["_id"];
                 });
                 setTransactionData(allTransactions.data);
-                console.log(transactionData);
             };
 
             fetchData();
         }
     }, []);
+
+    console.log(transactionData);
 
     const columns: GridColDef[] = [
         {
