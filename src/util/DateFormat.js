@@ -1,4 +1,4 @@
-export default function getFormattedDate(date) {
+export function getFormattedDate(date) {
   date = new Date(date);
   var year = date.getFullYear();
 
@@ -9,4 +9,15 @@ export default function getFormattedDate(date) {
   day = day.length > 1 ? day : '0' + day;
 
   return month + '/' + day + '/' + year;
+}
+
+export function convertDateToUTC(date) {
+  return new Date(
+    date.getUTCFullYear(),
+    date.getUTCMonth(),
+    date.getUTCDate(),
+    date.getUTCHours(),
+    date.getUTCMinutes(),
+    date.getUTCSeconds()
+  );
 }

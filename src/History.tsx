@@ -8,7 +8,7 @@ import {
 import axios from "axios";
 import { UserContext } from "./UserContext";
 import { sampleData } from "./util/json";
-import getFormattedDate from "./util/DateFormat";
+import { getFormattedDate, convertDateToUTC } from "./util/DateFormat";
 
 import "./History.scss";
 
@@ -33,23 +33,6 @@ function History() {
             fetchData();
         }
     }, []);
-
-    function convertDateToUTC(date) {
-        return new Date(
-            date.getUTCFullYear(),
-            date.getUTCMonth(),
-            date.getUTCDate(),
-            date.getUTCHours(),
-            date.getUTCMinutes(),
-            date.getUTCSeconds()
-        );
-    }
-
-    // if (transactionData.length > 0) {
-    //     console.log(
-    //         convertDateToUTC(new Date(transactionData[0]["transactionDate"]))
-    //     );
-    // }
 
     const columns: GridColDef[] = [
         {
