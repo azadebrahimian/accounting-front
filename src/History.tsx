@@ -45,7 +45,7 @@ function History() {
         );
     }
 
-    if (transactionData) {
+    if (transactionData.length > 0) {
         console.log(
             convertDateToUTC(new Date(transactionData[0]["transactionDate"]))
         );
