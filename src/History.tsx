@@ -34,7 +34,18 @@ function History() {
         }
     }, []);
 
-    console.log(transactionData);
+    function convertDateToUTC(date) {
+        return new Date(
+            date.getUTCFullYear(),
+            date.getUTCMonth(),
+            date.getUTCDate(),
+            date.getUTCHours(),
+            date.getUTCMinutes(),
+            date.getUTCSeconds()
+        );
+    }
+
+    console.log(convertDateToUTC(transactionData[0]));
 
     const columns: GridColDef[] = [
         {
@@ -73,7 +84,7 @@ function History() {
             field: "transactionDate",
             headerName: "Date",
             flex: 1,
-            type: "date",
+            type: "dateTime",
             valueFormatter: (params) => {
                 const valueFormatted = getFormattedDate(params.value);
                 return valueFormatted;
