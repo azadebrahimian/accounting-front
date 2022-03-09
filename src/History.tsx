@@ -45,7 +45,8 @@ function History() {
         );
     }
 
-    console.log(convertDateToUTC(new Date(transactionData[0])));
+    console.log(transactionData);
+    console.log(convertDateToUTC(new Date(transactionData[0]["date"])));
 
     const columns: GridColDef[] = [
         {
